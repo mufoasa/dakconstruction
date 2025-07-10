@@ -203,17 +203,18 @@ body {
     overflow: hidden;
 }
 
-.hero-video {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9; /* or whatever your video ratio is */
-    overflow: hidden;
+.video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  z-index: -2;
 }
 
-.hero-video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero-overlay {
