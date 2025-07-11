@@ -305,15 +305,13 @@
         }
 
        .map-container {
-  background: #e5e7eb;
-  border-radius: 10px;
-  padding: 1rem;
   opacity: 0;
   transform: translateX(50px);
   transition: all 0.8s ease;
   max-width: 1000px;
   margin: 0 auto;
-  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .map-container.animate {
@@ -323,11 +321,11 @@
 
 .responsive-map {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 ratio */
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
   height: 0;
   overflow: hidden;
   border-radius: 10px;
-  margin-bottom: 1rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
 .responsive-map iframe {
@@ -339,17 +337,24 @@
   border: 0;
 }
 
-.map-container p {
-  font-size: 1.2rem;
+.map-overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #1e3a8a;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+  z-index: 2;
+  text-align: center;
+  padding: 0 1rem;
 }
 
-.map-container i {
-  color: red;
+.map-overlay-text i {
+  color: #f43f5e; /* Tailwind-style red */
   margin-right: 0.5rem;
 }
-
         /* Services Section */
         .services-grid {
             display: grid;
@@ -732,11 +737,11 @@
       loading="lazy" 
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
+    <div class="map-overlay-text">
+      <p><i class="fas fa-map-marker-alt"></i> Duke Shërbyer Trojet Shqiptare!</p>
+    </div>
   </div>
-
-  <p><i class="fas fa-map-marker-alt"></i> Duke Shërbyer Trojet Shqiptare!</p>
 </div>
-
         <div class="values">
             <div class="value-item">
                 <div class="value-icon"><i class="fas fa-award"></i></div>
