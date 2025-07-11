@@ -1,363 +1,1057 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAK Construction - Building with Precision, Backed by Experience</title>
-    <meta name="description" content="Professional construction services in Tetovo, North Macedonia. General construction, renovations, custom homes and commercial projects.">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>DAK Construction - Duke Ndërtuar të Ardhmen</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(30, 58, 138, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fbbf24;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fbbf24;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fbbf24;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section with Video */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(30, 58, 138, 0.7), 
+                rgba(107, 114, 128, 0.6)
+            );
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: #fbbf24;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fbbf24;
+            color: #1e3a8a;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.5s forwards;
+        }
+
+        .cta-button:hover {
+            background: #f59e0b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3);
+        }
+
+        /* Floating Animation */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            background: rgba(251, 191, 36, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-elements::before {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-elements::after {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .section-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* About Section */
+        .about {
+            background: #f9fafb;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-text.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #6b7280;
+        }
+
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .value-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .value-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        .map-container {
+            height: 400px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .map-container.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+            cursor: pointer;
+        }
+
+        .service-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            color: #fbbf24;
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: #f9fafb;
+        }
+
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: white;
+            border: 2px solid #1e3a8a;
+            color: #1e3a8a;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #1e3a8a;
+            color: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s ease;
+        }
+
+        .project-card.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #1e3a8a, #6b7280);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .contact-form.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #fbbf24;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.2);
+        }
+
+        .submit-btn {
+            background: #1e3a8a;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.3);
+        }
+
+        .contact-info {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .contact-info.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .office {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .office h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .office-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: #6b7280;
+        }
+
+        .office-detail i {
+            margin-right: 0.5rem;
+            color: #fbbf24;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e3a8a;
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #fbbf24;
+            color: #1e3a8a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .project-filters {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav {
+                padding: 1rem 3%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 3%;
+            }
+
+            .values {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-        <button class="lang-btn active" data-lang="en">🇬🇧 EN</button>
-        <button class="lang-btn" data-lang="al">🇦🇱 AL</button>
-        <button class="lang-btn" data-lang="mk">🇲🇰 MK</button>
+   <header class="header">
+  <nav class="nav">
+    <a href="#home" class="logo">
+      <i class="fas fa-hard-hat"></i> DAK Construction
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home" class="nav-link active">Kryefaqja</a></li>
+      <li><a href="#about" class="nav-link">Rreth Nesh</a></li>
+      <li><a href="#services" class="nav-link">Shërbimet</a></li>
+      <li><a href="#projects" class="nav-link">Projektet</a></li>
+      <li><a href="#contact" class="nav-link">Kontakti</a></li>
+    </ul>
+    <div class="mobile-menu">
+      <i class="fas fa-bars"></i>
     </div>
+  </nav>
+</header>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-hard-hat"></i>
-                <span>DAK Construction</span>
-            </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link" data-en="Home" data-al="Kreu" data-mk="Дома">Home</a></li>
-                <li><a href="#about" class="nav-link" data-en="About" data-al="Rreth Nesh" data-mk="За Нас">About</a></li>
-                <li><a href="#services" class="nav-link" data-en="Services" data-al="Shërbimet" data-mk="Услуги">Services</a></li>
-                <li><a href="#projects" class="nav-link" data-en="Projects" data-al="Projektet" data-mk="Проекти">Projects</a></li>
-                <li><a href="#testimonials" class="nav-link" data-en="Testimonials" data-al="Dëshmi" data-mk="Препораки">Testimonials</a></li>
-                <li><a href="#contact" class="nav-link" data-en="Contact" data-al="Kontakt" data-mk="Контакт">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Video -->
     <section id="home" class="hero">
-    <div class="video-container">
-        <video autoplay muted loop playsinline>
-            <source src="hero-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
         </video>
-        <div class="video-overlay"></div>
-    </div>
+        <div class="hero-overlay"></div>
+        <div class="floating-elements"></div>
         <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title animate-text">
-                    <span data-en="DAK Construction" data-al="DAK Construction" data-mk="ДАК Конструкција">DAK Construction</span>
-                </h1>
-                <p class="hero-subtitle animate-text">
-                    <span data-en="Building with Precision, Backed by Experience" data-al="Ndërtojmë me Precizion, të Mbështetur nga Përvoja" data-mk="Градиме со Прецизност, Поддржани од Искуство">Building with Precision, Backed by Experience</span>
-                </p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary animate-btn" data-en="Get a Quote" data-al="Merrni një Ofertë" data-mk="Добијте Понуда">Get a Quote</button>
-                    <button class="btn btn-secondary animate-btn" data-en="View Projects" data-al="Shikoni Projektet" data-mk="Погледнете Проекти">View Projects</button>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
+            <h1>DAK Construction</h1>
+            <p class="tagline">Duke Ndërtuar të Ardhmen</p>
+            <a href="#contact" class="cta-button">Kërko Ofertë</a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-en="About DAK Construction" data-al="Rreth DAK Construction" data-mk="За ДАК Конструкција">About DAK Construction</h2>
-                <div class="blueprint-line"></div>
+    <section id="about" class="section about">
+        <h2 class="section-title">Rreth DAK Construction</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Me më shumë se një dekadë përvojë në industrinë e ndërtimit, DAK Construction është vendosur si një kompani lider ndërtimi që shërben Tetovën dhe Shkupin. Angazhimi ynë për përsosmëri, siguri dhe inovacion na ka bërë zgjedhjen e besuar për projekte rezidenciale, komerciale dhe infrastrukturore.</p>
+                <p>E themeluar mbi parimet e artizanatit cilësor dhe kënaqësisë së klientit, ne kemi përfunduar me sukses qindra projekte, nga komplekset moderne rezidenciale deri te zhvillimet komerciale në shkallë të gjerë. Ekipi ynë i profesionistëve të aftë sjell ekspertizë, besueshmëri dhe vëmendje ndaj detajeve në çdo projekt që ndërmarrim.</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p data-en="With over a decade of experience in the construction industry, DAK Construction has established itself as a leading construction company in Tetovo, North Macedonia. We specialize in delivering high-quality construction solutions that exceed our clients' expectations." data-al="Me mbi një dekadë përvojë në industrinë e ndërtimit, DAK Construction është vendosur si një kompani ndërtimi lider në Tetovë, Maqedonia e Veriut. Ne specializohemi në ofrimin e zgjidhjeve të ndërtimit me cilësi të lartë që tejkalojnë pritshmëritë e klientëve tanë." data-mk="Со повеќе од една деценија искуство во градежната индустрија, ДАК Конструкција се воспостави како водечка градежна компанија во Тетово, Северна Македонија. Ние се специјализираме во испорака на висококвалитетни градежни решенија кои ги надминуваат очекувањата на нашите клиенти.">With over a decade of experience in the construction industry, DAK Construction has established itself as a leading construction company in Tetovo, North Macedonia. We specialize in delivering high-quality construction solutions that exceed our clients' expectations.</p>
-                </div>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-year">2010</div>
-                        <div class="timeline-content">
-                            <h3 data-en="Company Founded" data-al="Kompania u Themelua" data-mk="Компанијата е Основана">Company Founded</h3>
-                            <p data-en="Started with residential projects" data-al="Filloi me projekte rezidenciale" data-mk="Започна со резиденцијални проекти">Started with residential projects</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2015</div>
-                        <div class="timeline-content">
-                            <h3 data-en="Commercial Expansion" data-al="Zgjerimi Komercial" data-mk="Комерцијална Експанзија">Commercial Expansion</h3>
-                            <p data-en="Expanded to commercial construction" data-al="U zgjerua në ndërtim komercial" data-mk="Проширена на комерцијална градба">Expanded to commercial construction</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2020</div>
-                        <div class="timeline-content">
-                            <h3 data-en="100+ Projects" data-al="100+ Projekte" data-mk="100+ Проекти">100+ Projects</h3>
-                            <p data-en="Completed over 100 successful projects" data-al="Përfundoi mbi 100 projekte të suksesshme" data-mk="Завршени над 100 успешни проекти">Completed over 100 successful projects</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="map-container">
+                <p><i class="fas fa-map-marker-alt"></i> Duke Shërbyer Trojet Shqiptare!</p>
+            </div>
+        </div>
+        <div class="values">
+            <div class="value-item">
+                <div class="value-icon"><i class="fas fa-award"></i></div>
+                <h3>Cilësia</h3>
+                <p>Standarde të pakompromis në çdo projekt që dorëzojmë</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Siguria</h3>
+                <p>Përparësi e sigurisë në të gjitha proceset tona të ndërtimit</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Inovacioni</h3>
+                <p>Përqafimi i teknikave moderne dhe praktikave të qëndrueshme</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Besueshmëria</h3>
+                <p>Dorëzimi i projekteve në kohë dhe brenda buxhetit</p>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-en="Our Services" data-al="Shërbimet Tona" data-mk="Наши Услуги">Our Services</h2>
-                <div class="blueprint-line"></div>
+    <section id="services" class="section">
+        <h2 class="section-title">Shërbimet Tona</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-home"></i></div>
+                <h3>Ndërtim Rezidencial</h3>
+                <p>Shtëpi të personalizuara, apartamente dhe komplekse rezidenciale të dizajnuara për të përmbushur standardet moderne të jetesës.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3 data-en="General Construction" data-al="Ndërtim i Përgjithshëm" data-mk="Општа Градба">General Construction</h3>
-                    <p data-en="Complete construction solutions from foundation to finish" data-al="Zgjidhje të plota ndërtimi nga themeli deri në përfundim" data-mk="Комплетни градежни решенија од темел до завршување">Complete construction solutions from foundation to finish</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3 data-en="Renovations" data-al="Rinovime" data-mk="Реновирања">Renovations</h3>
-                    <p data-en="Transform your existing space with our renovation expertise" data-al="Transformoni hapësirën tuaj ekzistuese me ekspertizën tonë të rinovimit" data-mk="Трансформирајте го вашиот постоечки простор со нашата експертиза за реновирање">Transform your existing space with our renovation expertise</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3 data-en="Custom Homes" data-al="Shtëpi të Personalizuara" data-mk="Приспособени Домови">Custom Homes</h3>
-                    <p data-en="Build your dream home with personalized design and quality" data-al="Ndërtoni shtëpinë tuaj të ëndrrave me dizajn të personalizuar dhe cilësi" data-mk="Изградете го домот на вашите соништа со персонализиран дизајн и квалитет">Build your dream home with personalized design and quality</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                    <h3 data-en="Commercial Projects" data-al="Projekte Komerciale" data-mk="Комерцијални Проекти">Commercial Projects</h3>
-                    <p data-en="Professional commercial construction for businesses" data-al="Ndërtim komercial profesional për bizneset" data-mk="Професионална комерцијална градба за бизниси">Professional commercial construction for businesses</p>
-                </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-building"></i></div>
+                <h3>Projekte Komerciale</h3>
+                <p>Ndërtesa zyrash, hapësira tregtare dhe komplekse komerciale të ndërtuara për suksesin e biznesit.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tools"></i></div>
+                <h3>Rinovime</h3>
+                <p>Shërbime të plota rinovimi për të transformuar dhe modernizuar strukturat ekzistuese.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-road"></i></div>
+                <h3>Zhvillim Infrastrukture</h3>
+                <p>Rrugë, ura dhe projekte infrastrukture publike që shërbejnë komunitetin.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-hard-hat"></i></div>
+                <h3>Menaxhim Projektesh</h3>
+                <p>Menaxhim gjithëpërfshirës projektesh nga planifikimi deri në përfundim.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-drafting-compass"></i></div>
+                <h3>Dizajn dhe Planifikim</h3>
+                <p>Shërbime dizajni arkitekturor dhe planifikimi të ndërtimit.</p>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-en="Our Projects" data-al="Projektet Tona" data-mk="Наши Проекти">Our Projects</h2>
-                <div class="blueprint-line"></div>
-            </div>
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all" data-en="All" data-al="Të Gjitha" data-mk="Сите">All</button>
-                <button class="filter-btn" data-filter="residential" data-en="Residential" data-al="Rezidenciale" data-mk="Резиденцијални">Residential</button>
-                <button class="filter-btn" data-filter="commercial" data-en="Commercial" data-al="Komerciale" data-mk="Комерцијални">Commercial</button>
-                <button class="filter-btn" data-filter="renovation" data-en="Renovation" data-al="Rinovim" data-mk="Реновирање">Renovation</button>
-            </div>
-            <div class="projects-grid">
-                <div class="project-item" data-category="residential">
-                    <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop" alt="Modern Villa" loading="lazy">
-                    <div class="project-overlay">
-                        <h3 data-en="Modern Villa" data-al="Villa Moderne" data-mk="Модерна Вила">Modern Villa</h3>
-                        <p data-en="Luxury residential project" data-al="Projekt rezidencial luksoze" data-mk="Луксузен резиденцијален проект">Luxury residential project</p>
-                    </div>
-                </div>
-                <div class="project-item" data-category="commercial">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop" alt="Office Complex" loading="lazy">
-                    <div class="project-overlay">
-                        <h3 data-en="Office Complex" data-al="Kompleks Zyrash" data-mk="Канцелариски Комплекс">Office Complex</h3>
-                        <p data-en="Modern commercial building" data-al="Ndërtesë komerciale moderne" data-mk="Модерна комерцијална зграда">Modern commercial building</p>
-                    </div>
-                </div>
-                <div class="project-item" data-category="renovation">
-                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&h=300&fit=crop" alt="Kitchen Renovation" loading="lazy">
-                    <div class="project-overlay">
-                        <h3 data-en="Kitchen Renovation" data-al="Rinovim Kuzhine" data-mk="Реновирање на Кујна">Kitchen Renovation</h3>
-                        <p data-en="Complete kitchen makeover" data-al="Rinovim i plotë i kuzhinës" data-mk="Комплетно преуредување на кујна">Complete kitchen makeover</p>
-                    </div>
-                </div>
-                <div class="project-item" data-category="residential">
-                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop" alt="Family Home" loading="lazy">
-                    <div class="project-overlay">
-                        <h3 data-en="Family Home" data-al="Shtëpi Familjare" data-mk="Семеен Дом">Family Home</h3>
-                        <p data-en="Custom built family residence" data-al="Rezidencë familjare e ndërtuar sipas porosis" data-mk="Приспособено изградена семејна резиденција">Custom built family residence</p>
-                    </div>
-                </div>
-                <div class="project-item" data-category="commercial">
-                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=300&fit=crop" alt="Shopping Center" loading="lazy">
-                    <div class="project-overlay">
-                        <h3 data-en="Shopping Center" data-al="Qendër Tregtare" data-mk="Трговски Центар">Shopping Center</h3>
-                        <p data-en="Large scale retail development" data-al="Zhvillim i madh tregtar" data-mk="Голем трговски развој">Large scale retail development</p>
-                    </div>
-                </div>
-                <div class="project-item" data-category="renovation">
-                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop" alt="Bathroom Renovation" loading="lazy">
-                    <div class="project-overlay">
-                        <h3 data-en="Bathroom Renovation" data-al="Rinovim Banje" data-mk="Реновирање на Бања">Bathroom Renovation</h3>
-                        <p data-en="Modern bathroom transformation" data-al="Transformim modern i banjës" data-mk="Модерна трансформација на бања">Modern bathroom transformation</p>
-                    </div>
-                </div>
-            </div>
+    <section id="projects" class="section projects">
+        <h2 class="section-title">Projektet Tona</h2>
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">Të Gjitha Projektet</button>
+            <button class="filter-btn" data-filter="residential">Rezidenciale</button>
+            <button class="filter-btn" data-filter="commercial">Komerciale</button>
+            <button class="filter-btn" data-filter="infrastructure">Infrastrukturë</button>
         </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-en="What Our Clients Say" data-al="Çfarë Thonë Klientët Tanë" data-mk="Што Велат Нашите Клиенти">What Our Clients Say</h2>
-                <div class="blueprint-line"></div>
-            </div>
-            <div class="testimonials-slider">
-                <div class="testimonial-item active">
-                    <div class="testimonial-content">
-                        <p data-en="DAK Construction exceeded our expectations. Their attention to detail and professionalism is outstanding. Our new home is exactly what we dreamed of." data-al="DAK Construction i tejkaloi pritshmëritë tona. Vëmendja e tyre ndaj detajeve dhe profesionalizmi është i jashtëzakonshëm. Shtëpia jonë e re është pikërisht ajo që ëndërronim." data-mk="ДАК Конструкција ги надмина нашите очекувања. Нивното внимание кон деталите и професионализмот е извонреден. Нашиот нов дом е токму она што го сонувавме.">"DAK Construction exceeded our expectations. Their attention to detail and professionalism is outstanding. Our new home is exactly what we dreamed of."</p>
-                        <div class="testimonial-author">
-                            <h4>Marko Petrovski</h4>
-                            <span data-en="Homeowner" data-al="Pronar Shtëpie" data-mk="Сопственик на Дом">Homeowner</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <p data-en="Professional, reliable, and high-quality work. DAK Construction completed our office renovation on time and within budget. Highly recommended!" data-al="Punë profesionale, e besueshme dhe me cilësi të lartë. DAK Construction e përfundoi rinovimin e zyrës sonë në kohë dhe brenda buxhetit. Shumë e rekomanduar!" data-mk="Професионална, доверлива и висококвалитетна работа. ДАК Конструкција го заврши реновирањето на нашата канцеларија навреме и во рамките на буџетот. Многу препорачано!">"Professional, reliable, and high-quality work. DAK Construction completed our office renovation on time and within budget. Highly recommended!"</p>
-                        <div class="testimonial-author">
-                            <h4>Arben Ahmeti</h4>
-                            <span data-en="Business Owner" data-al="Pronar Biznesi" data-mk="Сопственик на Бизнис">Business Owner</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <p data-en="From planning to completion, DAK Construction provided excellent service. Their team is skilled, courteous, and delivers exceptional results." data-al="Nga planifikimi deri në përfundim, DAK Construction ofroi shërbim të shkëlqyer. Ekipi i tyre është i aftë, i sjellshëm dhe jep rezultate të jashtëzakonshme." data-mk="Од планирањето до завршувањето, ДАК Конструкција обезбеди одлична услуга. Нивниот тим е вешт, учтив и дава исклучителни резултати.">"From planning to completion, DAK Construction provided excellent service. Their team is skilled, courteous, and delivers exceptional results."</p>
-                        <div class="testimonial-author">
-                            <h4>Elena Stojanovic</h4>
-                            <span data-en="Project Manager" data-al="Menaxher Projekti" data-mk="Менаџер на Проект">Project Manager</span>
-                        </div>
-                    </div>
+        <div class="projects-grid">
+            <div class="project-card" data-category="residential">
+                <div class="project-image">Kompleks Rezidencial - Tetovë</div>
+                <div class="project-info">
+                    <h3>Kompleks Modern Rezidencial</h3>
+                    <p>Kompleks rezidencial me 120 njësi me lehtësira moderne dhe karakteristika dizajni të qëndrueshme.</p>
                 </div>
             </div>
-            <div class="testimonial-nav">
-                <button class="nav-dot active" data-slide="0"></button>
-                <button class="nav-dot" data-slide="1"></button>
-                <button class="nav-dot" data-slide="2"></button>
+            <div class="project-card" data-category="commercial">
+                <div class="project-image">Qendër Biznesi - Shkup</div>
+                <div class="project-info">
+                    <h3>Qendra e Biznesit Shkup</h3>
+                    <p>Ndërtesë komerciale 15-katëshe me lehtësira bashkëkohore dhe sisteme efiçiente energjie.</p>
+                </div>
+            </div>
+            <div class="project-card" data-category="infrastructure">
+                <div class="project-image">Ndërtim Ure</div>
+                <div class="project-info">
+                    <h3>Projekti i Urës së Qytetit</h3>
+                    <p>Projekt i madh infrastrukture që lidh zonat kryesore të qytetit me ndërtim modern ure.</p>
+                </div>
+            </div>
+            <div class="project-card" data-category="residential">
+                <div class="project-image">Zhvillim Villash</div>
+                <div class="project-info">
+                    <h3>Zhvillim Villash Luksoze</h3>
+                    <p>Komunitet ekskluziv villash me ndërtim premium dhe peizazh.</p>
+                </div>
+            </div>
+            <div class="project-card" data-category="commercial">
+                <div class="project-image">Qendër Tregtare</div>
+                <div class="project-info">
+                    <h3>Qendra Tregtare Rajonale</h3>
+                    <p>Zhvillim tregtie në shkallë të gjerë me arkitekturë moderne dhe karakteristika të qëndrueshme.</p>
+                </div>
+            </div>
+            <div class="project-card" data-category="infrastructure">
+                <div class="project-image">Ndërtim Rrugësh</div>
+                <div class="project-info">
+                    <h3>Zgjerim Autostrade</h3>
+                    <p>Projekt i madh infrastrukture rrugore që përmirëson lidhshmërinë midis qyteteve.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-en="Get In Touch" data-al="Kontaktoni Me Ne" data-mk="Контактирајте Не">Get In Touch</h2>
-                <div class="blueprint-line"></div>
+    <section id="contact" class="section">
+        <h2 class="section-title">Na Kontaktoni</h2>
+        <div class="contact-content">
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Emri Juaj" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email-i Juaj" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Telefoni Juaj">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Lloji i Projektit">
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Detajet e Projektit" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Dërgo Mesazhin</button>
+                </form>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
+            <div class="contact-info">
+                <div class="office">
+                    <h3><i class="fas fa-building"></i> Zyra Tetovë</h3>
+                    <div class="office-detail">
                         <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3 data-en="Address" data-al="Adresa" data-mk="Адреса">Address</h3>
-                            <p>Tetovo, North Macedonia</p>
-                        </div>
+                        <span>Ul. Ilindenska 123, Tetovë, Maqedonia e Veriut</span>
                     </div>
-                    <div class="contact-item">
+                    <div class="office-detail">
                         <i class="fas fa-phone"></i>
-                        <div>
-                            <h3 data-en="Phone" data-al="Telefon" data-mk="Телефон">Phone</h3>
-                            <p>+389 XX XXX XXX</p>
-                        </div>
+                        <span>+389 44 123 456</span>
                     </div>
-                    <div class="contact-item">
+                    <div class="office-detail">
                         <i class="fas fa-envelope"></i>
-                        <div>
-                            <h3 data-en="Email" data-al="Email" data-mk="Е-пошта">Email</h3>
-                            <p>info@dakconstruction.mk</p>
-                        </div>
+                        <span>tetove@dakconstruction.mk</span>
                     </div>
                 </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" required>
-                        <label for="name" data-en="Your Name" data-al="Emri Juaj" data-mk="Вашето Име">Your Name</label>
+                <div class="office">
+                    <h3><i class="fas fa-building"></i> Zyra Shkup</h3>
+                    <div class="office-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Ul. Makedonija 456, Shkup, Maqedonia e Veriut</span>
                     </div>
-                    <div class="form-group">
-                        <input type="email" id="email" required>
-                        <label for="email" data-en="Your Email" data-al="Email-i Juaj" data-mk="Вашата Е-пошта">Your Email</label>
+                    <div class="office-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+389 2 123 456</span>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" id="phone" required>
-                        <label for="phone" data-en="Your Phone" data-al="Telefoni Juaj" data-mk="Вашиот Телефон">Your Phone</label>
+                    <div class="office-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>shkup@dakconstruction.mk</span>
                     </div>
-                    <div class="form-group">
-                        <textarea id="message" required></textarea>
-                        <label for="message" data-en="Your Message" data-al="Mesazhi Juaj" data-mk="Вашата Порака">Your Message</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary" data-en="Send Message" data-al="Dërgo Mesazhin" data-mk="Испрати Порака">Send Message</button>
-                </form>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <i class="fas fa-hard-hat"></i>
-                        <span>DAK Construction</span>
-                    </div>
-                    <p data-en="Building with Precision, Backed by Experience" data-al="Ndërtojmë me Precizion, të Mbështetur nga Përvoja" data-mk="Градиме со Прецизност, Поддржани од Искуство">Building with Precision, Backed by Experience</p>
-                </div>
-                <div class="footer-section">
-                    <h3 data-en="Quick Links" data-al="Lidhje të Shpejta" data-mk="Брзи Врски">Quick Links</h3>
-                    <ul>
-                        <li><a href="#home" data-en="Home" data-al="Kreu" data-mk="Дома">Home</a></li>
-                        <li><a href="#about" data-en="About" data-al="Rreth Nesh" data-mk="За Нас">About</a></li>
-                        <li><a href="#services" data-en="Services" data-al="Shërbimet" data-mk="Услуги">Services</a></li>
-                        <li><a href="#projects" data-en="Projects" data-al="Projektet" data-mk="Проекти">Projects</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3 data-en="Contact Info" data-al="Informacione Kontakti" data-mk="Контакт Информации">Contact Info</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Tetovo, North Macedonia</p>
-                    <p><i class="fas fa-phone"></i> +389 XX XXX XXX</p>
-                    <p><i class="fas fa-envelope"></i> info@dakconstruction.mk</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DAK Construction</h3>
+                <p>Duke ndërtuar të ardhmen me cilësi, siguri dhe inovacion.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 DAK Construction. <span data-en="All rights reserved." data-al="Të gjitha të drejtat e rezervuara." data-mk="Сите права се задржани.">All rights reserved.</span></p>
+            <div class="footer-section">
+                <h3>Lidhje të Shpejta</h3>
+                <p><a href="#home" style="color: white; text-decoration: none;">Kryefaqja</a></p>
+                <p><a href="#about" style="color: white; text-decoration: none;">Rreth Nesh</a></p>
+                <p><a href="#services" style="color: white; text-decoration: none;">Shërbimet</a></p>
+                <p><a href="#projects" style="color: white; text-decoration: none;">Projektet</a></p>
             </div>
+            <div class="footer-section">
+                <h3>Informacione Kontakti</h3>
+                <p><i class="fas fa-phone"></i> +389 44 123 456</p>
+                <p><i class="fas fa-envelope"></i> info@dakconstruction.mk</p>
+                <p><i class="fas fa-map-marker-alt"></i> Tetovë dhe Shkup</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p>&copy; 2024 DAK Construction. Të gjitha të drejtat e rezervuara.</p>
         </div>
     </footer>
 
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/389XXXXXXXX" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">
-                <i class="fas fa-hard-hat"></i>
-                <span>DAK Construction</span>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-        </div>
-    </div>
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-    <script src="script.js"></script>
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.section-title, .about-text, .map-container, .value-item, .service-card, .project-card, .contact-form, .contact-info').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Staggered animation for service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Staggered animation for project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Project filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projects = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projects.forEach(project => {
+                    if (filter === 'all' || project.getAttribute('data-category') === filter) {
+                        project.style.display = 'block';
+                        setTimeout(() => {
+                            project.classList.add('animate');
+                        }, 100);
+                    } else {
+                        project.style.display = 'none';
+                        project.classList.remove('animate');
+                    }
+                });
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add loading state
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Duke dërguar...';
+            submitBtn.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                alert('Faleminderit për mesazhin tuaj! Do t\'ju kontaktojmë së shpejti.');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30, 58, 138, 0.98)';
+            } else {
+                header.style.background = 'rgba(30, 58, 138, 0.95)';
+            }
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = 'rgba(30, 58, 138, 0.98)';
+                navLinks.style.padding = '1rem';
+            }
+        });
+
+        // Video error handling
+        const heroVideo = document.querySelector('.hero-video');
+        heroVideo.addEventListener('error', function() {
+            // If video fails to load, show fallback background
+            this.style.display = 'none';
+            document.querySelector('.hero').style.background = 
+                'linear-gradient(rgba(30, 58, 138, 0.8), rgba(107, 114, 128, 0.8)), url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 600\'><rect fill=\'%23374151\' width=\'1200\' height=\'600\'/><polygon fill=\'%231e3a8a\' points=\'0,600 400,400 800,500 1200,300 1200,600\'/><circle fill=\'%23fbbf24\' cx=\'200\' cy=\'200\' r=\'20\' opacity=\'0.7\'/><circle fill=\'%23fbbf24\' cx=\'800\' cy=\'150\' r=\'15\' opacity=\'0.5\'/><rect fill=\'%236b7280\' x=\'100\' y=\'400\' width=\'80\' height=\'200\'/><rect fill=\'%236b7280\' x=\'300\' y=\'350\' width=\'60\' height=\'250\'/><rect fill=\'%236b7280\' x=\'500\' y=\'380\' width=\'70\' height=\'220\'/></svg>")';
+        });
+
+        // Add entrance animations on page load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
