@@ -1,0 +1,179 @@
+Build a full-stack production-ready web application called BarberSpotlight.
+
+Overview
+
+BarberSpotlight is a barber reservation platform where:
+
+Customers do NOT need accounts
+
+Customers can reserve a time slot at a barber shop
+
+Barber shops DO have accounts and dashboards
+
+Barber shops can manage availability, services, reservations and add staff 
+
+Tech Stack (use best defaults)
+
+Next.js (App Router)
+
+TypeScript
+
+Tailwind CSS
+
+Prisma + PostgreSQL
+
+Server Actions
+
+Zod for validation
+
+Shadcn/UI components
+
+Authentication for barbers only (NextAuth or Clerk)
+
+Core Features
+1. Public Customer Flow (No Account)
+
+Landing page explaining BarberSpotlight
+
+3 Languages English, Albanian and German
+
+3 currencies EUR,MKD and CHF (BARBERSHOPS CHOOSE WHEN CREATING THEIR SHOP)
+
+Browse barber shops
+
+View a barber shop profile:
+
+Name
+
+Location
+
+Services (haircut, beard, combo, price, duration)
+
+Available time slots
+
+Reservation form:
+
+Name
+
+Phone number
+
+Optional note
+
+Select service
+
+Select date & time
+
+Submit reservation without logging in
+
+Show confirmation screen after booking
+
+2. Barber Authentication
+
+Barber sign up
+
+Barber login
+
+Secure session handling
+
+Each barber only sees their own data
+
+3. Barber Dashboard
+
+Create a protected dashboard for barbers with:
+
+Dashboard Pages
+
+Overview (today’s appointments, upcoming count)
+
+Reservations list:
+
+Customer name
+
+Phone number
+
+Service
+
+Date & time
+
+Status (pending, completed, canceled)
+
+Ability to:
+
+Cancel reservations
+
+Mark as completed
+
+Barber Management
+
+Manage services:
+
+Name
+
+Price
+
+Duration
+
+Manage availability:
+
+Working days
+
+Opening & closing hours
+
+Block off time slots
+
+Backend Requirements
+
+Prisma schema with:
+
+Barber
+
+BarberProfile
+
+Service
+
+Reservation
+
+Availability
+
+Server Actions for:
+
+Creating reservations
+
+Fetching available time slots
+
+Barber CRUD operations
+
+Prevent double bookings
+
+Validate time slots against availability for each barber
+
+Each barber staff has own time and date slots (depends on who customer picks)
+
+UI / UX
+
+Modern, clean barber-style design
+
+Mobile responsive and ready
+
+Use Shadcn components
+
+Loading and error states
+
+Toast notifications
+
+Extras (Implement If Possible)
+
+
+Admin seed data
+
+Environment variable setup
+
+Generate all pages, components, backend logic, and database schema
+
+Use best practices
+
+Keep code organized
+
+No mock data unless explicitly labeled
+
+Build everything end-to-end so the app runs after installing dependencies and setting environment variables. 
